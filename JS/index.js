@@ -3,7 +3,6 @@ class Game {
   constructor() {
     this.rock;
     this.obstaclesArr = [];
-    this.bottomObstArr = [];
     this.addEventListener();
   }
 
@@ -12,24 +11,21 @@ class Game {
     this.rock.rockPlayer();
 
     setInterval(() => {
-      const newObstacle = new TopObstacle();
-      this.obstaclesArr.push(newObstacle);
-    }, 3000);
+      const gap = 20;
+      const maxHeight = 100;
+      const topHeight = Math.floor(Math.random() * 35) + 20;
 
-    setInterval(() => {
-      const newObstacle = new BottomObstacle();
-      this.bottomObstArr.push(newObstacle);
+      const bootomHeight = maxHeight - topHeight - gap;
+
+      const topObstacle = new Obstacle(topHeight, 0);
+      const bottomObstacle = new Obstacle(bootomHeight, bootomHeight);
+      this.obstaclesArr.push(topObstacle, bottomObstacle);
     }, 3000);
 
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveLeft();
-      });
-    }, 60);
-
-    setInterval(() => {
-      this.bottomObstArr.forEach((obstacleInstance) => {
-        obstacleInstance.moveLeft();
+        this.detectCollision(obstacleInstance);
       });
     }, 60);
   }
@@ -45,27 +41,43 @@ class Game {
       }
     });
   }
+
+  detectCollision(obstacleInstance) {
+    if (obstacleInstance.positionY === 0) {
+      if (
+        this.rock.positionX + this.rock.width > obstacleInstance.positionX &&
+        this.rock.positionY <
+          obstacleInstance.positionY + obstacleInstance.height
+      ) {
+        // console.log("game over");
+        // location.href = "./game-over.html";
+      } else if (
+        this.rock.positionX + this.rock.width > obstacleInstance.positionX &&
+        this.rock.positionY - this.rock.height > obstacleInstance.positionY
+      ) {
+        console.log("game over");
+        location.href = "./game-over.html";
+      }
+    }
+  }
 }
 
 // create a player class with positioning height width ...
 
 class Rock {
   constructor() {
-    this.width = 20;
-    this.height = 20;
+    this.width = 5;
+    this.height = 5;
     this.positionX = 0;
     this.positionY = 50;
-    
-
-
   }
 
   // create a dom element
   rockPlayer() {
     this.rock = document.createElement("div");
     this.rock.id = "rock";
-    this.rock.style.width = 60 + "px";
-    this.rock.style.height = 40 + "px";
+    this.rock.style.width = 5 + "vw";
+    this.rock.style.height = 5 + "vh";
     this.rock.style.left = this.positionX + "vw";
     this.rock.style.top = this.positionY + "vh";
 
@@ -89,12 +101,12 @@ class Rock {
 
 // create a obstacle class positioning heights width ...
 
-class TopObstacle {
-  constructor() {
-    this.width = 1;
-    this.height = Math.floor(Math.random() * 100) - 20;
+class Obstacle {
+  constructor(height, posY) {
+    this.width = 10;
+    this.height = height;
     this.positionX = 50;
-    this.positionY = 0;
+    this.positionY = posY;
 
     this.createObstacle();
   }
@@ -104,35 +116,7 @@ class TopObstacle {
     this.obstacle.className = "obstacle";
     this.obstacle.style.width = this.width + "vw";
     this.obstacle.style.height = this.height + "vh";
-    this.obstacle.style.right = this.positionX + "vw";
-    this.obstacle.style.top = this.positionY + "vh";
-
-    const parentElement = document.getElementById("board");
-    parentElement.appendChild(this.obstacle);
-  }
-
-  moveLeft() {
-    this.positionX--;
     this.obstacle.style.left = this.positionX + "vw";
-  }
-}
-
-class BottomObstacle {
-  constructor() {
-    this.width = 1;
-    this.height = Math.floor(Math.random() * 100) - 20;
-    this.positionX = 100;
-    this.positionY = 0;
-
-    this.createObstacle();
-  }
-
-  createObstacle() {
-    this.obstacle = document.createElement("div");
-    this.obstacle.className = "obstacle";
-    this.obstacle.style.width = this.width + "vw";
-    this.obstacle.style.height = this.height + "vh";
-    this.obstacle.style.right = this.positionX + "vw";
     this.obstacle.style.top = this.positionY + "vh";
 
     const parentElement = document.getElementById("board");
