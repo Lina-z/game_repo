@@ -1,23 +1,23 @@
 body {
-  background-color: #152840;
-  margin: 0;
-  padding:0;
+  background-image: url(/Img/background1.png);
 }
 
 #board {
+  background-image: url(/Img/board.png);
 width: 800px;
 height: 500px;
 background-position: center 100%;
 background-position-x: center;
-position: absolute
+position: relative;
 }
   
 #rock {
-  background-image: url(/Img/rock.png);
+  background-image: url(/Img/rock-40px.png);
+  position: relative;
+}
+
+.obstacle {
+  background-color: white;
   position: absolute;
 }
 
-#obstacle {
-  background-color: blueviolet;
-  position: absolute;
-}
