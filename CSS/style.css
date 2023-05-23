@@ -3,16 +3,16 @@ body {
 }
 
 #board {
-  background-image: url(/Img/board.png);
-width: 800px;
-height: 500px;
-background-position: center 100%;
+background-image: url(/Img/board.png);
+width: 1;
+height: 800px;
+background-position-y: center;
 background-position-x: center;
 position: relative;
 }
   
 #rock {
-  background-image: url(/Img/rock-40px.png);
+  background-image: url(/Img/rock-60x40.png);
   position: relative;
 }
 
@@ -20,4 +20,3 @@ position: relative;
   background-color: white;
   position: absolute;
 }
-
