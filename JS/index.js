@@ -11,16 +11,16 @@ class Game {
     this.rock.rockPlayer();
 
     setInterval(() => {
-      const gap = 20;
+      const gap = 30;
       const maxHeight = 100;
-      const topHeight = Math.floor(Math.random() * 35) + 20;
+      const topHeight = Math.floor(Math.random() * (maxHeight - gap));
 
-      const bootomHeight = maxHeight - topHeight - gap;
+      const bottomHeight = maxHeight - topHeight - gap;
 
       const topObstacle = new Obstacle(topHeight, 0);
-      const bottomObstacle = new Obstacle(bootomHeight, bootomHeight);
+      const bottomObstacle = new Obstacle(bottomHeight, bottomHeight);
       this.obstaclesArr.push(topObstacle, bottomObstacle);
-    }, 3000);
+    }, 2000);
 
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
@@ -43,31 +43,35 @@ class Game {
   }
 
   detectCollision(obstacleInstance) {
-    if (obstacleInstance.positionY === 0) {
-      if (
-        this.rock.positionX + this.rock.width > obstacleInstance.positionX &&
-        this.rock.positionY <
-          obstacleInstance.positionY + obstacleInstance.height
-      ) {
-        // console.log("game over");
-        // location.href = "./game-over.html";
-      } else if (
-        this.rock.positionX + this.rock.width > obstacleInstance.positionX &&
-        this.rock.positionY - this.rock.height > obstacleInstance.positionY
+
+    const rockLeft = this.rock.positionX;
+    const rockRight = this.rock.positionX + this.rock.width
+    const rockTop = this.rock.positionY
+    const rockBottom = this.rock.positionY + this.rock.height;
+
+    const obstacleLeft = obstacleInstance.positionX;
+    const obstacleRight = obstacleInstance.positionX + obstacleInstance.width;
+    const obstacleTop = obstacleInstance.positionY;
+    const obstacleBottom = obstacleInstance.positionY + obstacleInstance.height;
+
+    if (
+        rockRight >= obstacleLeft &&
+        rockLeft <= obstacleRight &&
+        rockBottom >= obstacleTop &&
+        rockTop <= obstacleBottom
       ) {
         console.log("game over");
         location.href = "./game-over.html";
       }
     }
-  }
 }
 
 // create a player class with positioning height width ...
 
 class Rock {
   constructor() {
-    this.width = 5;
-    this.height = 5;
+    this.width = 7;
+    this.height = 7;
     this.positionX = 0;
     this.positionY = 50;
   }
@@ -76,8 +80,8 @@ class Rock {
   rockPlayer() {
     this.rock = document.createElement("div");
     this.rock.id = "rock";
-    this.rock.style.width = 5 + "vw";
-    this.rock.style.height = 5 + "vh";
+    this.rock.style.width = 7 + "vw";
+    this.rock.style.height = 7 + "vh";
     this.rock.style.left = this.positionX + "vw";
     this.rock.style.top = this.positionY + "vh";
 
@@ -103,7 +107,7 @@ class Rock {
 
 class Obstacle {
   constructor(height, posY) {
-    this.width = 10;
+    this.width = 5;
     this.height = height;
     this.positionX = 50;
     this.positionY = posY;

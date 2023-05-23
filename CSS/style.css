@@ -1,23 +1,50 @@
 body {
   background-image: url(/Img/background1.png);
+  background-repeat: no-repeat;
+  
 }
 
 #board {
 background-image: url(/Img/board.png);
-width: 1;
-height: 800px;
-background-position-y: center;
-background-position-x: center;
+background-repeat: no-repeat;
+background-size: contain;
+background-position: center;
+width: 100vw;
+height: 100vh;
 position: relative;
+background-size: contain;
 }
   
 #rock {
   background-image: url(/Img/rock-60x40.png);
-  position: relative;
-  outline: solid blue 10px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+ 
 }
 
 .obstacle {
-  background-color: white;
+  background-image: url(/Img/obstacle.png);
   position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
+
+
+#game-over {
+  background-image: url(/Img/game-over.gif);
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.button {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  display: grid;
+}
+
+
