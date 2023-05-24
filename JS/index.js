@@ -1,4 +1,4 @@
-const rockHeight = 3;
+const rockHeight = 5;
 
 // create Game class with start method - obstacle method - update obstacle
 class Game {
@@ -13,28 +13,28 @@ class Game {
     this.rock.rockPlayer();
 
     setInterval(() => {
-      const gap = 30;
+      const gap = this.getRandomGap(35, 40);
       const maxHeight = 100;
-      const topHeight = 20 + Math.floor(Math.random() * (30 - rockHeight/2 - 2));
-
-      const bottomPosition = maxHeight - topHeight;//maxHeight - topHeight - gap;
-
+      const topHeight = 20 + Math.floor(Math.random() * (gap - rockHeight/2 - 2));
+      const bottomPosition = maxHeight - topHeight - gap;
+    
       const topObstacle = new Obstacle(topHeight, 0);
-      const bottomObstacle = new Obstacle(topHeight, bottomPosition);
+      const bottomObstacle = new Obstacle(bottomPosition, topHeight + gap);
       this.obstaclesArr.push(topObstacle, bottomObstacle);
-    }, 1500);
+    }, 2000);
 
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveLeft();
-         this.detectCollision(obstacleInstance);
+        this.detectCollision(obstacleInstance);
           this.removeObstacle(obstacleInstance);
       });
     }, 60);
   }
 
   addEventListener() {
-    console.log("listeners");
+
+
     document.addEventListener("keydown", (event) => {
       console.log("event", event);
       if (event.code === "ArrowUp") {
@@ -74,7 +74,11 @@ class Game {
         this.obstaclesArr.shift();
       }
     }
-}
+  
+    getRandomGap(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+  }
 
 // create a player class with positioning height width ...
 
@@ -90,8 +94,8 @@ class Rock {
   rockPlayer() {
     this.rock = document.createElement("div");
     this.rock.id = "rock";
-    this.rock.style.width = 7 + "vw";
-    this.rock.style.height = 7 + "vh";
+    this.rock.style.width = 9 + "vw";
+    this.rock.style.height = 10 + "vh";
     this.rock.style.left = this.positionX + "vw";
     this.rock.style.top = this.positionY + "vh";
 

@@ -18,6 +18,7 @@ body {
   width: 190vh;
   height: 100vh;
   margin: auto;
+  overflow: hidden;
   position: relative;
 }
   
@@ -33,7 +34,6 @@ body {
   background-image: url(../Img/obstacle.png);
   position: absolute;
   left: 50px;
-  /* top: 100px; */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -51,7 +51,7 @@ body {
 }
 
 .button {
-  position: relative;
+
   text-align: center;
   margin: auto;
   display: grid;
