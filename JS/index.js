@@ -25,7 +25,7 @@ class Game {
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveLeft();
-        this.detectCollision(obstacleInstance);
+         this.detectCollision(obstacleInstance);
       });
     }, 60);
   }
@@ -42,7 +42,7 @@ class Game {
     });
   }
 
-  detectCollision(obstacleInstance) {
+   detectCollision(obstacleInstance) {
 
     const rockLeft = this.rock.positionX;
     const rockRight = this.rock.positionX + this.rock.width
@@ -63,7 +63,7 @@ class Game {
         console.log("game over");
         location.href = "./game-over.html";
       }
-    }
+    } 
 }
 
 // create a player class with positioning height width ...
