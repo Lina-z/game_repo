@@ -1,3 +1,5 @@
+const rockHeight = 3;
+
 // create Game class with start method - obstacle method - update obstacle
 class Game {
   constructor() {
@@ -13,19 +15,20 @@ class Game {
     setInterval(() => {
       const gap = 30;
       const maxHeight = 100;
-      const topHeight = Math.floor(Math.random() * (maxHeight - gap));
+      const topHeight = 20 + Math.floor(Math.random() * (30 - rockHeight/2 - 2));
 
-      const bottomHeight = maxHeight - topHeight - gap;
+      const bottomPosition = maxHeight - topHeight;//maxHeight - topHeight - gap;
 
       const topObstacle = new Obstacle(topHeight, 0);
-      const bottomObstacle = new Obstacle(bottomHeight, bottomHeight);
+      const bottomObstacle = new Obstacle(topHeight, bottomPosition);
       this.obstaclesArr.push(topObstacle, bottomObstacle);
-    }, 2000);
+    }, 1500);
 
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveLeft();
          this.detectCollision(obstacleInstance);
+          this.removeObstacle(obstacleInstance);
       });
     }, 60);
   }
@@ -64,6 +67,13 @@ class Game {
         location.href = "./game-over.html";
       }
     } 
+
+    removeObstacle(obstacleInstance) {
+      if (obstacleInstance.positionX < 0 - obstacleInstance.width) {
+        obstacleInstance.obstacle.remove();
+        this.obstaclesArr.shift();
+      }
+    }
 }
 
 // create a player class with positioning height width ...
@@ -71,7 +81,7 @@ class Game {
 class Rock {
   constructor() {
     this.width = 7;
-    this.height = 7;
+    this.height = rockHeight;
     this.positionX = 0;
     this.positionY = 50;
   }
@@ -107,7 +117,7 @@ class Rock {
 
 class Obstacle {
   constructor(height, posY) {
-    this.width = 5;
+    this.width = 2;
     this.height = height;
     this.positionX = 50;
     this.positionY = posY;
