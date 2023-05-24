@@ -1,11 +1,11 @@
 body {
-  background-image: url(./Img/background1.png);
+  background-image: url(../Img/background1.png);
   background-repeat: no-repeat;
   
 }
 
 #board {
-background-image: url(./Img/board.png);
+background-image: url(../Img/board.png);
 background-repeat: no-repeat;
 background-size: contain;
 background-position: center;
@@ -16,7 +16,7 @@ background-size: contain;
 }
   
 #rock {
-  background-image: url(./Img/rock-60x40.png);
+  background-image: url(../Img/rock-60x40.png);
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
@@ -24,7 +24,7 @@ background-size: contain;
 }
 
 .obstacle {
-  background-image: url(./Img/obstacle.png);
+  background-image: url(../Img/obstacle.png);
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
@@ -32,7 +32,7 @@ background-size: contain;
 
 
 #game-over {
-  background-image: url(./Img/game-over.gif);
+  background-image: url(../Img/game-over.gif);
   position: relative;
   width: 100vw;
   height: 100vh;
