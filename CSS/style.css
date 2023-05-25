@@ -57,4 +57,23 @@ body {
   display: grid;
 }
 
+.startButton {
+  text-align: center;
+  margin: auto;
+  display: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#start {
+
+  background-image: url(../Img/startbkgd.png);
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 

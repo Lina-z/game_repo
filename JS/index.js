@@ -1,3 +1,7 @@
+
+
+
+
 const rockHeight = 5;
 
 // create Game class with start method - obstacle method - update obstacle
@@ -11,6 +15,7 @@ class Game {
   start() {
     this.rock = new Rock();
     this.rock.rockPlayer();
+
 
     setInterval(() => {
       const gap = this.getRandomGap(35, 40);
@@ -146,6 +151,7 @@ class Obstacle {
     this.obstacle.style.left = this.positionX + "vw";
   }
 }
+
 
 const game = new Game();
 game.start();
