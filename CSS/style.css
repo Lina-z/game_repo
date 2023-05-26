@@ -1,13 +1,16 @@
 body {
   background-image: url(../Img/background1.png);
   background-repeat: no-repeat;
-  position: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
 }
 
 #global {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #board {
@@ -57,14 +60,6 @@ body {
   display: grid;
 }
 
-.startButton {
-  text-align: center;
-  margin: auto;
-  display: auto;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
 
 #start {
 
@@ -75,5 +70,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
