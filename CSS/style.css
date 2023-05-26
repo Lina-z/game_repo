@@ -2,15 +2,7 @@ body {
   background-image: url(../Img/background1.png);
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center;
-  align-items: center;
   
-}
-
-#global {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #board {
@@ -20,9 +12,10 @@ body {
   background-position: center;
   width: 190vh;
   height: 100vh;
-  margin: auto;
   overflow: hidden;
+  display: flex;
   position: relative;
+  
 }
   
 #rock {
@@ -46,8 +39,8 @@ body {
 #game-over {
   background-image: url(../Img/game-over.gif);
   position: relative;
-  width: 80vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -68,8 +61,8 @@ body {
 
   background-image: url(../Img/startbkgd.png);
   position: relative;
-  width: 80vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
